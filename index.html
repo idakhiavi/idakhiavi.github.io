@@ -3,28 +3,191 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ida Khiavi</title>
+  <title>Your Name – Blog</title>
   <style>
-    body { font:16px/1.6 system-ui, sans-serif; margin:0; }
-    header { text-align:center; padding:1.5rem; border-bottom:1px solid #ddd; }
-    nav { margin-top:.75rem; }
-    nav a { margin:0 .75rem; text-decoration:none; color:#0b57d0; }
-    nav a:hover { text-decoration:underline; }
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #111827;
+      --link: #2563eb;
+      --border: #e5e7eb;
+      --maxw: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: #fafafa;
+    }
+    .header-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    nav a {
+      display: inline-block;
+      padding: 6px 10px;
+      margin-left: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+    nav a:hover { background: #f3f4f6; }
+
+    /* Layout: 75% / 25% */
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 20px 16px 48px;
+      display: grid;
+      grid-template-columns: 3fr 1fr; /* 75% / 25% */
+      gap: 28px;
+    }
+
+    /* Main column */
+    main article {
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    article h2 {
+      margin: 0 0 8px;
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    /* Sidebar */
+    aside {
+      position: sticky;
+      top: 12px;
+      height: max-content;
+    }
+    .sidebar-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .sidebar-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .post-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .post-list li + li { margin-top: 8px; }
+    .post-list a {
+      text-decoration: none;
+      color: var(--link);
+    }
+    .post-list a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Small screens: stack columns */
+    @media (max-width: 800px) {
+      .page { grid-template-columns: 1fr; }
+      aside { position: static; }
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Welcome to My Site</h1>
-    <nav>
-      <a href="resume.html">Resume</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="header-inner">
+      <a class="brand" href="/">Your Name</a>
+      <nav>
+        <a href="/contact">/contact</a>
+        <a href="/resume">/resume</a>
+        <a href="/AboutME">/AboutME</a>
+      </nav>
+    </div>
   </header>
 
-  <main style="padding:1.5rem; max-width:800px; margin:auto;">
-    <h2>Main Page</h2>
-    <p>Hello World!</p>
-  </main>
+  <div class="page">
+    <main>
+
+      <!-- Post A -->
+      <article id="post-a">
+        <h2>A</h2>
+        <div class="meta">Posted on <time datetime="2025-08-08">August 8, 2025</time></div>
+        <p>a</p>
+      </article>
+
+      <!-- Post B -->
+      <article id="post-b">
+        <h2>B</h2>
+        <div class="meta">Posted on <time datetime="2025-08-08">August 8, 2025</time></div>
+        <p>b</p>
+      </article>
+
+      <!-- Post C -->
+      <article id="post-c">
+        <h2>C</h2>
+        <div class="meta">Posted on <time datetime="2025-08-08">August 8, 2025</time></div>
+        <p>c</p>
+      </article>
+
+      <!--
+        To add more posts:
+        1) Copy an <article>, change id="post-something", the <h2> title, and body.
+        2) Add a matching link in the sidebar list below.
+      -->
+
+    </main>
+
+    <aside aria-label="All posts">
+      <div class="sidebar-card">
+        <h3>All posts</h3>
+        <ul class="post-list">
+          <li><a href="#post-a">A</a></li>
+          <li><a href="#post-b">B</a></li>
+          <li><a href="#post-c">C</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    © <span id="y"></span> Your Name
+  </footer>
+
+  <script>
+    // Auto-update footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
