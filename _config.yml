@@ -1,0 +1,12 @@
+title: "Ida's place"
+description: "B.Eng. , M.Sc. in computer Science"
+url: "https://idakhiavi.com"
+baseurl: ""
+theme: null
+permalink: /:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+collections:
+  posts:
+    output: true

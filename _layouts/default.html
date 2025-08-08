@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+<link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
+<meta name="description" content="{{ site.description }}">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <div class="brand-and-nav">
+      <a class="brand" href="{{ "/" | relative_url }}">Ida Khiavi</a>
+      <nav class="tabs">
+        <!-- labels lower-case, no leading slash; href goes to full URL paths -->
+        <a href="{{ site.url }}/contact">contact</a>
+        <a href="{{ site.url }}/resume">resume</a>
+        <a href="{{ site.url }}/aboutme">aboutme</a>
+        <span class="sep">|</span>
+        <a href="{{ "/" | relative_url }}">home</a>
+      </nav>
+    </div>
+    <p class="tagline">{{ site.description }}</p>
+    <p class="social">
+      <a href="XXX">GitHub</a>
+      <a href="XXX">LinkedIn</a>
+      <a href="XXX">Publication</a>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="grid">
+    <section class="main">
+      {{ content }}
+    </section>
+    <aside class="sidebar" aria-label="All posts">
+      <div class="card">
+        <h3>All posts</h3>
+        <ul>
+          {% for post in site.posts %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="y"></span> Ida Khiavi • <span style="color:var(--accent2)">Ida's place</span>
+</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

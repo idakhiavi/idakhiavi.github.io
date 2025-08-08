@@ -1,0 +1,82 @@
+/* Dark gray + neon green (with a touch of neon purple) */
+:root{
+  --bg:#0f1115;          /* deep gray */
+  --panel:#161922;       /* card/section bg */
+  --text:#e5e7eb;        /* light gray */
+  --muted:#9aa0a6;       /* muted text */
+  --accent:#39ff14;      /* neon green */
+  --accent2:#b026ff;     /* neon purple (sparingly) */
+  --link:#39ff14;        /* neon link */
+  --border:#222636;      /* subtle border */
+  --maxw:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+}
+
+/* Links */
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.site-header{border-bottom:1px solid var(--border); background:linear-gradient(180deg,#12141b, #0f1115)}
+.site-header .inner{max-width:var(--maxw);margin:0 auto;padding:16px}
+.brand-and-nav{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.25rem;color:#fff;text-decoration:none}
+.tabs a{
+  margin-right:10px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:6px 10px;
+  color:#e7eaf3;
+  background:linear-gradient(180deg,#171a23,#141720);
+}
+.tabs a:hover{box-shadow:0 0 0 2px rgba(57,255,20,.25) inset}
+.sep{margin:0 8px;color:var(--muted)}
+.tagline,.social{color:var(--muted);margin:6px 0}
+.social a{margin-right:10px}
+
+/* Layout */
+.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px}
+.grid{display:grid;grid-template-columns:3fr 1fr;gap:28px}
+.main h1{margin:0 0 12px}
+
+/* Post list (home) */
+.post-list{list-style:none;margin:0;padding:0}
+.post-item{padding:14px 0;border-bottom:1px solid var(--border)}
+.post-title{font-weight:700}
+.meta{color:var(--muted);font-size:.95rem;margin-left:8px}
+
+/* Sidebar */
+.sidebar .card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  background:var(--panel);
+}
+.sidebar h3{margin:0 0 8px}
+.sidebar ul{list-style:none;margin:0;padding:0}
+.sidebar li+li{margin-top:8px}
+
+/* Footer */
+.site-footer{
+  border-top:1px solid var(--border);
+  padding:16px;
+  color:var(--muted);
+  text-align:center;
+  background:linear-gradient(0deg,#12141b,#0f1115);
+}
+
+/* Post page */
+.post h1{margin:0 0 8px;font-size:1.9rem;line-height:1.2}
+.post .meta{margin-bottom:14px}
+
+/* Small screens */
+@media (max-width:800px){
+  .grid{grid-template-columns:1fr}
+}
