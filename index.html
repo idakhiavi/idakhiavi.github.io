@@ -1,13 +1,77 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<title>Rage</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<body style="font: 18px/1.6 system-ui, sans-serif; max-width: 600px; margin: 10vh auto; padding: 0 1rem;">
-  <blockquote style="white-space: pre-wrap; margin:0;">
-Good men, the last wave by, crying how bright
-Their frail deeds might have danced in a green bay,
-Rage, rage against the dying of the light.
-  </blockquote>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ida's Blog</title>
+  <style>
+    :root { --bg:#fff; --fg:#1a1a1a; --muted:#666; --card:#f6f6f6; --link:#0b57d0; }
+    * { box-sizing: border-box }
+    body { margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--fg); background:var(--bg); }
+    header { padding:2.5rem 1rem; text-align:center; border-bottom:1px solid #eaeaea; }
+    header h1 { margin:0 0 .25rem; font-size:2rem; }
+    header p { margin:.25rem 0 0; color:var(--muted); }
+    .container { max-width:800px; margin:0 auto; padding:1.25rem; }
+    .post { background:var(--card); border:1px solid #e6e6e6; border-radius:14px; padding:1.25rem; margin:1rem 0; }
+    .post h2 { margin:.2rem 0 .25rem; font-size:1.4rem; }
+    .meta { font-size:.9rem; color:var(--muted); margin-bottom:.5rem; }
+    .post a { color:var(--link); text-decoration:none }
+    .post a:hover { text-decoration:underline }
+    footer { text-align:center; color:var(--muted); padding:2rem 1rem; border-top:1px solid #eaeaea; }
+    .nav { display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center; margin-top:.75rem; }
+    .tag { font-size:.8rem; background:#eee; border-radius:999px; padding:.15rem .6rem; }
+    /* Optional dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#0b0b0b; --fg:#e9e9e9; --muted:#9aa0a6; --card:#121212; --link:#8ab4f8; }
+      .post { border-color:#232323; }
+      header, footer { border-color:#232323; }
+      .tag { background:#1f1f1f; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ida's Blog</h1>
+    <p>Thoughts, notes, and experiments.</p>
+    <nav class="nav">
+      <a class="tag" href="#">All</a>
+      <a class="tag" href="#">Java</a>
+      <a class="tag" href="#">Web</a>
+      <a class="tag" href="#">Life</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- POST CARD 1 -->
+    <article class="post">
+      <h2><a href="#">Good Men, The Last Wave</a></h2>
+      <div class="meta">Aug 8, 2025 · 2 min read · <span class="tag">Poetry</span></div>
+      <p>
+        “Good men, the last wave by, crying how bright their frail deeds might have danced in a green bay…”
+        Some quick reflections on resilience and why the line still hits.
+      </p>
+      <p><a href="#">Read more →</a></p>
+    </article>
+
+    <!-- POST CARD 2 -->
+    <article class="post">
+      <h2><a href="#">Setting Up GitHub Pages with a Custom Domain</a></h2>
+      <div class="meta">Aug 8, 2025 · 4 min read · <span class="tag">Web</span></div>
+      <p>
+        Hello World!
+      </p>
+      <p><a href="#">Read more →</a></p>
+    </article>
+
+    <!-- DUPLICATE <article class="post">…</article> blocks for more posts -->
+
+  </main>
+
+  <footer>
+    © <span id="y"></span> Ida's Blog <a href="mailto:you@yourdomain.com">Contact</a>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
 </html>
