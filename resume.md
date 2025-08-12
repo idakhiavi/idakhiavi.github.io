@@ -10,7 +10,7 @@ permalink: /resume/
 
 ## 👩‍💻 About Me
 Engineer by training, explorer by instinct. I’ve navigated worlds as different as real-time air traffic control systems, AI-powered shipyard analytics, and multi-omics genomic research.  
-I’m happiest at the intersection of **hard technical challenges** and **big-picture problem-solving** — whether it’s squeezing performance out of a protocol stack, turning raw environmental data into insights, or translating genomic complexity into clear visual models.  
+I’m happiest at the intersection of **hard technical challenges** and **big-picture problem-solving** — whether it’s squeezing performance out of a protocol stack, automating cloud infrastructure with Terraform, orchestrating containerized services with Kubernetes, streamlining deployments through Azure CI/CD pipelines, or translating genomic complexity into clear visual models.  
 My career and research share the same philosophy: **make it work, make it elegant, make it useful**.
 
 ---
@@ -20,23 +20,24 @@ My career and research share the same philosophy: **make it work, make it elegan
 ### **Software Engineer** — Frequentis QC, Canada (Jan 2024 – Present)
 - Develop and maintain high-assurance embedded software for **VoIP gateways** in **air traffic control**, using C++, Java, and shell scripting in mission-critical, real-time environments.
 - Design secure, low-latency **SIP protocols** for Air-Ground and Ground-Ground communications.
-- Build Qt-based graphical interfaces optimized for resource-constrained embedded systems.
-- Conduct full-system lab validation: integrate hardware, simulate real-time calls, capture and analyze network traffic with Wireshark, and verify system performance under operational loads.
+- Integrate containerized services into embedded platforms and automate test environments using **Docker**, **Kubernetes**, and **Terraform**.
+- Conduct full-system lab validation: integrate hardware, simulate real-time calls, capture and analyze network traffic with Wireshark, and verify system performance under operational loads through CI/CD pipelines in **Azure DevOps**.
 
 ### **Software Developer / Data Engineer** — Genoa Design International NL, Canada (Feb 2021 – Sep 2023)
 - Developed interactive dashboards and visualizations with SQL, Power BI, Python, and C#, integrating machine learning (PyTorch, Scikit-learn) for KPI forecasting, anomaly detection, and data imputation.
-- Designed REST API-driven microservices and optimized SQL access for improved reporting.
-- Built robust ETL pipelines (SSIS, shell scripts, Python, C#) for integrating, cleaning, and transforming ship design and construction data.
+- Designed REST API-driven microservices and optimized SQL access for improved reporting, deploying through **Azure CI/CD pipelines**.
+- Built robust ETL pipelines (SSIS, shell scripts, Python, C#) for integrating, cleaning, and transforming ship design and construction data, orchestrated with **Kubernetes** for scalability.
 - Implemented multi-dimensional OLAP cubes (SSAS) to deliver sub-second querying for complex operational and financial reporting.
+- Applied infrastructure-as-code principles with **Terraform** to provision cloud resources, ensuring consistent, repeatable deployments across teams.
 
 ### **Web Developer** — Canadian Integrated Ocean Observing Systems (Nov 2019 – Jul 2020)
-- Created Python/FastAPI applications to merge **real-time weather and ocean data** from multiple APIs.
-- Applied deep learning to forecast oceanic trends and detect climate-related anomalies.
-- Designed Streamlit dashboards to allow researchers and policymakers to interact with climate datasets in real time.
+- Designed and implemented a climate monitoring and alerting system by developing Python/FastAPI services to aggregate real-time weather data from multiple APIs, using **Kubernetes-native monitoring** and **Azure Monitor** for performance tracking and anomaly alerts.
+- Applied deep learning (PyTorch) to forecast oceanic trends and detect climate-related anomalies.
+- Built Streamlit dashboards and interactive time series visualizations to enable researchers and policymakers to explore climate datasets in real time.
 
 ### **Research & Teaching Assistant** — Memorial University (Jan 2018 – Dec 2020)
-- Developed an R-based interactive visualization library for my Master’s thesis, enabling multi-layered exploration of protein structures by integrating structural and sequence data.
-- Applied machine learning to genomic datasets to identify sequence motifs, predict gene regulation patterns, and classify tumor types.
+- Collaborated in a cross-functional research team to design and develop an R-based, **MongoDB**-backed visualization library for multi-source protein data, implementing containerized builds for reproducibility and continuous delivery of visualization software in cloud environments.
+- Applied machine learning algorithms for genomic pattern detection, optimizing workflows for large-scale data analysis in collaboration with infrastructure and network engineers in bioinformatics departments.
 - Mentored students in Computer Logic, Algebra, and Graph Theory, turning abstract concepts into practical tools.
 
 ---
@@ -44,8 +45,8 @@ My career and research share the same philosophy: **make it work, make it elegan
 ## 🛠 Technical Skills
 **Languages & Frameworks:**  
 C++ (Qt, real-time systems, SIP), Java (Spring Boot, Kafka), Python (Pandas, Scikit-learn, PyTorch, FastAPI, Streamlit), C# (MVC, APIs), SQL (SSIS, SSAS), Power BI  
-**Tools & Platforms:** Azure CI/CD, Azure Data Factory, Containerization, Git, Wireshark  
-**Approaches:** Microservices, Data Pipelines, ETL, Machine Learning, Visualization
+**Tools & Platforms:** Azure CI/CD, Azure Data Factory, Terraform, Kubernetes, Helm, GitHub Actions, Containerization (Docker), Git, Wireshark, Azure Monitor  
+**Approaches:** Infrastructure-as-Code, Microservices, Data Pipelines, ETL, Machine Learning, Visualization, Continuous Delivery, Automated Testing
 
 ---
 
