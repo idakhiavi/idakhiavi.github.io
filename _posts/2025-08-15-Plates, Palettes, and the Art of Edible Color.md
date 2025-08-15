@@ -3,7 +3,7 @@ layout: post
 title: "Plates, Palettes, and the Art of Edible Color"
 ---
 
-![Charcuterie Table]({{ "/assets/images/1.jpg" | relative_url }})
+![Charcuterie Table](/assets/images/1.jpg")
 
 Egon Schiele’s jagged lines and raw hues. Munch’s haunted skies and aching faces. They sit on my table, not in frames, but as coasters—watching me slice, arrange, and layer.
 
