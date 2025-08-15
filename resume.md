@@ -21,13 +21,16 @@ My career and research share the same philosophy: **make it work, make it elegan
 - Develop and maintain high-assurance embedded software for **VoIP gateways** in **air traffic control**, using C++, Java, and shell scripting in mission-critical, real-time environments.
 - Design secure, low-latency **SIP protocols** for Air-Ground and Ground-Ground communications.
 - Build Qt-based graphical interfaces optimized for resource-constrained embedded systems.
-- Conduct full-system lab validation: integrate hardware, simulate real-time calls, capture and analyze network traffic with Wireshark, and verify system performance under operational loads.
+- Automate lab environment provisioning with Terraform and Bitbucket, integrating infrastructure-as-code into CI/CD
+workflows for system validation, real-time simulation
 
 ### **Software Developer / Data Engineer** — Genoa Design International NL, Canada (Feb 2021 – Sep 2023)
 - Developed interactive dashboards and visualizations with SQL, Power BI, Python, and C#, integrating machine learning (PyTorch, Scikit-learn) for KPI forecasting, anomaly detection, and data imputation.
 - Designed REST API-driven microservices and optimized SQL access for improved reporting.
-- Built robust ETL pipelines (SSIS, shell scripts, Python, C#) for integrating, cleaning, and transforming ship design and construction data.
-- Implemented multi-dimensional OLAP cubes (SSAS) to deliver sub-second querying for complex operational and financial reporting.
+- Developed ETL pipelines using SSIS, shell scripts, Python, and C#, orchestrated through Azure Data Factory and Kubernetes
+for automated scaling of workloads
+- Applied Terraform for provisioning cloud infrastructure, Kubernetes for orchestration, and CI/CD pipelines in Azure
+DevOps/GitHub Actions to ensure reliable, repeatable deployments across teams
 
 ### **Web Developer** — Canadian Integrated Ocean Observing Systems (Nov 2019 – Jul 2020)
 - Created Python/FastAPI applications to merge **real-time weather and ocean data** from multiple APIs.
@@ -44,7 +47,7 @@ My career and research share the same philosophy: **make it work, make it elegan
 ## 🛠 Technical Skills
 **Languages & Frameworks:**  
 C++ (Qt, real-time systems, SIP), Java (Spring Boot, Kafka), Python (Pandas, Scikit-learn, PyTorch, FastAPI, Streamlit), C# (MVC, APIs), SQL (SSIS, SSAS), Power BI  
-**Tools & Platforms:** Azure CI/CD, Azure Data Factory, Containerization, Git, Wireshark  
+**Tools & Platforms:** Azure CI/CD, Azure Data Factory, Terraform, Kubernetes, GitHub Actions, Wireshark, Shell, Containerization, Git
 **Approaches:** Microservices, Data Pipelines, ETL, Machine Learning, Visualization
 
 ---
