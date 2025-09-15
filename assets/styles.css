@@ -42,7 +42,7 @@ a:hover{text-decoration:underline}
 .social a{margin-right:10px}
 
 /* Layout */
-.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px;position:relative}
+.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px}
 .grid{display:grid;grid-template-columns:3fr 1fr;gap:28px}
 .main h1{margin:0 0 12px}
 
@@ -72,23 +72,12 @@ a:hover{text-decoration:underline}
   background:linear-gradient(0deg,#12141b,#0f1115);
 }
 
-/* Homepage left-margin avatar */
-.home-left-image{
-  position:absolute;
-  left:0;
-  top:140px; /* sits just below the header */
-  transform:translateX(-60%);
-  z-index:0;
-  pointer-events:none; /* purely decorative */
-}
-.home-left-image img{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--border);
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
-  display:block;
+/* Homepage left-margin avatar (no overlap) */
+.home-with-avatar{position:relative;padding-left:180px}
+.home-with-avatar .home-left-image{position:absolute;left:0;bottom:0;pointer-events:none}
+.home-with-avatar .home-left-image img{
+  width:140px;height:140px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--border);box-shadow:0 10px 30px rgba(0,0,0,.35);display:block
 }
 
 /* Post page */
@@ -98,5 +87,29 @@ a:hover{text-decoration:underline}
 /* Small screens */
 @media (max-width:800px){
   .grid{grid-template-columns:1fr}
-  .home-left-image{display:none}
+  .home-with-avatar{padding-left:0}
+  .home-with-avatar .home-left-image{display:none}
 }
+
+/* Arcade theme (homepage only) */
+.home-arcade{
+  position:relative;
+  padding:24px;
+  border-radius:16px;
+  background:
+    radial-gradient(1200px 600px at -10% 120%, rgba(176,38,255,.10), transparent 70%),
+    radial-gradient(800px 400px at 110% -10%, rgba(57,255,20,.10), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 24px),
+    linear-gradient(180deg,#0e1016,#0a0b10);
+  box-shadow:
+    0 0 0 1px rgba(176,38,255,.25) inset,
+    0 0 25px rgba(176,38,255,.15),
+    0 0 35px rgba(57,255,20,.10);
+}
+.home-arcade h1{
+  text-shadow:0 0 8px rgba(57,255,20,.6), 0 0 18px rgba(176,38,255,.4);
+}
+.home-arcade .post-item{border-bottom:1px solid rgba(176,38,255,.2)}
+.home-arcade .post-item:hover{background:rgba(176,38,255,.06)}
+.home-arcade .post-title:hover{ text-shadow:0 0 6px rgba(57,255,20,.85) }

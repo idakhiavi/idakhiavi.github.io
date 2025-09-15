@@ -3,16 +3,16 @@ layout: default
 title: Home
 ---
 
-<!-- Left margin avatar for homepage -->
-<div class="home-left-image" aria-hidden="true">
-  <img src="{{ "/assets/images/2.jpg" | relative_url }}" alt="" />
-  <!-- Decorative only; alt left empty on purpose -->
-  <!-- To make it announced, add a descriptive alt text -->
+<div class="home-with-avatar home-arcade">
+  <!-- Left margin avatar for homepage -->
+  <div class="home-left-image" aria-hidden="true">
+    <img src="{{ "/assets/images/ida.jpg" | relative_url }}" alt="" />
+    <!-- Decorative only; alt left empty on purpose -->
   </div>
 
-<h1>Posts</h1>
+  <h1>Posts</h1>
 
-<ul class="post-list">
+  <ul class="post-list">
   {% for post in site.posts %}
   <li class="post-item">
     <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
@@ -21,4 +21,5 @@ title: Home
     </span>
   </li>
   {% endfor %}
-</ul>
+  </ul>
+</div>
