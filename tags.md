@@ -47,3 +47,20 @@ permalink: /tags/
     </section>
   {% endif %}
 {% endfor %}
+
+<script>
+(function(){
+  function filterTags(){
+    var hash = decodeURIComponent(location.hash||'').replace('#','');
+    var sections = document.querySelectorAll('.tag-section');
+    if(!sections.length) return;
+    if(!hash){
+      sections.forEach(function(s){ s.style.display = 'none'; });
+      return;
+    }
+    sections.forEach(function(s){ s.style.display = (s.id === hash) ? 'block' : 'none'; });
+  }
+  window.addEventListener('hashchange', filterTags);
+  document.addEventListener('DOMContentLoaded', filterTags);
+})();
+</script>
