@@ -12,7 +12,7 @@ permalink: /tags/
   {% assign words = text | split: ' ' %}
   {% for w in words %}
     {% if w and w != '' and w | slice: 0, 1 == '#' %}
-      {% assign tag = w | remove: '#' | downcase %}
+      {% assign tag = w | remove: '#' %}
       {% capture tags_raw %}{{ tags_raw }}|{{ tag }}{% endcapture %}
     {% endif %}
   {% endfor %}
@@ -32,4 +32,3 @@ permalink: /tags/
     </ul>
   {% endif %}
 {% endfor %}
-
