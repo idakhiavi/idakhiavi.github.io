@@ -15,12 +15,14 @@
   --accent3:#fff02a;     /* neon yellow */
   --accent4:#ff1744;     /* neon red */
   /* Homepage avatar sizing */
-  --home-avatar-min:100px;
-  --home-avatar-max:200px;
-  --home-avatar-w:7.5vw; /* 25% of previous 30vw */
+  --home-avatar-min:200px;  /* doubled */
+  --home-avatar-max:400px;  /* doubled */
+  --home-avatar-w:15vw;     /* doubled from 7.5vw */
   --home-avatar-pad:clamp(var(--home-avatar-min), calc(var(--home-avatar-w) + 24px), var(--home-avatar-max));
-  --home-avatar-offset-x:-2vw;
-  --home-avatar-offset-y:-6px;
+  --home-avatar-offset-x:-4vw; /* stronger pop-out */
+  --home-avatar-offset-y:-12px;
+  /* Grid step for checker background */
+  --grid-step:40px; /* bigger cells than 24px */
 }
 
 *{box-sizing:border-box}
@@ -105,7 +107,7 @@ a:hover{text-decoration:underline}
 .social a{margin-right:10px}
 
 /* Layout */
-.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px}
+.container{max-width:var(--maxw);margin:0 auto;padding:12px 8px 24px}
 .grid{display:grid;grid-template-columns:3fr 1fr;gap:28px}
 .main h1{margin:0 0 12px}
 
@@ -172,8 +174,8 @@ a:hover{text-decoration:underline}
   background:
     radial-gradient(1200px 600px at -10% 120%, rgba(176,38,255,.10), transparent 70%),
     radial-gradient(800px 400px at 110% -10%, rgba(57,255,20,.10), transparent 60%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 24px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent var(--grid-step)),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent var(--grid-step)),
     linear-gradient(180deg,#0e1016,#0a0b10);
   box-shadow:
     0 0 0 1px rgba(176,38,255,.25) inset,
