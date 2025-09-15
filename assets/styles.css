@@ -10,29 +10,30 @@
   --border:#222636;      /* subtle border */
   --maxw:1100px;
   --font-arcade:'Press Start 2P', 'Trebuchet MS', Tahoma, system-ui, sans-serif;
+  --font-body:'Oxanium', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   /* Extra neon accents */
   --accent3:#fff02a;     /* neon yellow */
   --accent4:#ff1744;     /* neon red */
   /* Homepage avatar sizing */
-  --home-avatar-min:220px;
-  --home-avatar-max:520px;
-  --home-avatar-w:30vw;
-  --home-avatar-pad:clamp(var(--home-avatar-min), 34vw, var(--home-avatar-max));
-  --home-avatar-offset-x:-4vw;
-  --home-avatar-offset-y:-10px;
+  --home-avatar-min:100px;
+  --home-avatar-max:200px;
+  --home-avatar-w:7.5vw; /* 25% of previous 30vw */
+  --home-avatar-pad:clamp(var(--home-avatar-min), calc(var(--home-avatar-w) + 24px), var(--home-avatar-max));
+  --home-avatar-offset-x:-2vw;
+  --home-avatar-offset-y:-6px;
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
-}
+body{ background:var(--bg); color:var(--text); font:16px/1.6 var(--font-body) }
 
 /* Apply arcade font to headings, brand, tabs, and post titles */
 h1, h2, h3, .brand, .tabs a, .post-title{ font-family:var(--font-arcade) }
 h1, h2, h3{ letter-spacing:.5px }
+/* Tame heading sizes for readability */
+h1{ font-size:1.25rem }
+h2{ font-size:1.1rem }
+h3{ font-size:1rem }
 
 /* Links */
 a{color:var(--link);text-decoration:none}
@@ -44,7 +45,7 @@ a:hover{text-decoration:underline}
 .brand-and-nav{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
 .brand{
   font-weight:900;
-  font-size:1.35rem;
+  font-size:1.2rem;
   letter-spacing:.5px;
   text-transform:uppercase;
   color:#39ff14;
@@ -111,7 +112,7 @@ a:hover{text-decoration:underline}
 /* Post list (home) */
 .post-list{list-style:none;margin:0;padding:0}
 .post-item{padding:14px 0;border-bottom:1px solid var(--border)}
-.post-title{font-weight:700}
+.post-title{font-weight:700; font-size:.95rem; overflow-wrap:anywhere}
 .meta{color:var(--muted);font-size:.95rem;margin-left:8px}
 
 /* Sidebar */
@@ -139,11 +140,13 @@ a:hover{text-decoration:underline}
 .home-with-avatar .home-left-image{position:fixed;left:var(--home-avatar-offset-x);bottom:var(--home-avatar-offset-y);pointer-events:none}
 .home-with-avatar .home-left-image img{
   width:var(--home-avatar-w);max-width:var(--home-avatar-max);min-width:var(--home-avatar-min);height:auto;border-radius:0;object-fit:contain;
-  border:3px solid var(--border);box-shadow:none;display:block
+  border:none;box-shadow:none;display:block
 }
 
 /* Post page */
 .post h1{margin:0 0 8px;font-size:1.9rem;line-height:1.2}
+/* Reduce post page title size for better balance */
+.post h1{font-size:1.4rem}
 .post .meta{margin-bottom:14px}
 
 /* Small screens */
@@ -176,6 +179,7 @@ a:hover{text-decoration:underline}
     0 0 0 1px rgba(176,38,255,.25) inset,
     0 0 25px rgba(176,38,255,.15),
     0 0 35px rgba(57,255,20,.10);
+  overflow:hidden;
 }
 .arcade h1{ text-shadow:0 0 8px rgba(57,255,20,.6), 0 0 18px rgba(176,38,255,.4) }
 .arcade .post-item{border-bottom:1px solid rgba(176,38,255,.2)}
