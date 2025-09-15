@@ -62,12 +62,14 @@
         <ul>
           {% assign tags_raw = '' %}
           {% for post in site.posts %}
-            {% assign text = post.content | strip_html | replace: ',', ' ' | replace: '.', ' ' | replace: '!', ' ' | replace: '?', ' ' | replace: ';', ' ' | replace: ':', ' ' | replace: ')', ' ' | replace: '(', ' ' %}
-            {% assign words = text | split: ' ' %}
-            {% for w in words %}
-              {% if w and w != '' and w | slice: 0, 1 == '#' %}
-                {% assign tag = w | remove: '#' %}
-                {% capture tags_raw %}{{ tags_raw }}|{{ tag }}{% endcapture %}
+            {% assign segments = post.content | strip_html | split: '#' %}
+            {% for s in segments offset:1 %}
+              {% if s and s != '' and s | slice: 0, 1 != ' ' %}
+                {% assign token = s | strip | split: ' ' | first %}
+                {% assign token = token | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
+                {% if token != '' %}
+                  {% capture tags_raw %}{{ tags_raw }}|{{ token }}{% endcapture %}
+                {% endif %}
               {% endif %}
             {% endfor %}
           {% endfor %}
