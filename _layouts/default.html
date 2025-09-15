@@ -41,12 +41,15 @@
     <section class="main">
       {{ content }}
     </section>
-    <aside class="sidebar" aria-label="All posts">
+    <aside class="sidebar" aria-label="Archive">
       <div class="card">
-        <h3>All posts</h3>
+        <h3>Archive</h3>
         <ul>
-          {% for post in site.posts %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+          {% assign posts_by_month = site.posts | group_by_exp: 'post', post.date | date: '%Y-%m' | sort: 'name' | reverse %}
+          {% for month in posts_by_month %}
+            {% assign anchor = month.name %}
+            {% assign label = month.items[0].date | date: '%B %Y' %}
+            <li><a href="{{ '/archive/#' | append: anchor | relative_url }}">{{ label }}</a></li>
           {% endfor %}
         </ul>
       </div>
