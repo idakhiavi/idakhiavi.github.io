@@ -47,26 +47,3 @@ permalink: /tags/
     </section>
   {% endif %}
 {% endfor %}
-
-<script>
-  (function(){
-    function applyTagFilter(){
-      var hash = decodeURIComponent(location.hash||'').replace('#','');
-      var sections = document.querySelectorAll('.tag-section');
-      if(!hash){
-        sections.forEach(function(s){ s.classList.remove('is-active'); });
-        document.documentElement.classList.remove('tag-filter-active');
-        return;
-      }
-      var any = false;
-      sections.forEach(function(s){
-        if(s.id === hash){ s.classList.add('is-active'); any = true; }
-        else { s.classList.remove('is-active'); }
-      });
-      if(any){ document.documentElement.classList.add('tag-filter-active'); }
-      else { document.documentElement.classList.remove('tag-filter-active'); }
-    }
-    window.addEventListener('hashchange', applyTagFilter);
-    document.addEventListener('DOMContentLoaded', applyTagFilter);
-  })();
-  </script>
