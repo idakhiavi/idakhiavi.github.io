@@ -121,7 +121,7 @@ a:hover{text-decoration:underline}
 /* Full posts on home */
 .home-post{padding:16px 0;border-bottom:1px solid var(--border)}
 .home-post h2{margin:0 0 6px}
-.home-post .post-content img{max-width:100%;height:auto}
+.home-post .post-content img{width:min(30vw, 100%); aspect-ratio:1/1; height:auto; object-fit:cover; display:block}
 .home-post .post-content{margin-top:8px}
 
 /* Sidebar */
@@ -149,19 +149,14 @@ a:hover{text-decoration:underline}
 .home-with-avatar .home-left-image{position:fixed;left:var(--home-avatar-offset-x);bottom:var(--home-avatar-offset-y);pointer-events:none;z-index:20}
 .home-with-avatar .home-left-image img{
   width:var(--home-avatar-w);max-width:var(--home-avatar-max);min-width:var(--home-avatar-min);height:auto;border-radius:0;object-fit:contain;
-  border:none;box-shadow:none;display:block
-}
-/* Mask the container grid/border behind transparent areas of the avatar */
-.home-with-avatar .home-left-image::before{
-  content:""; position:fixed; left:0; bottom:0; transform:translateX(calc(var(--home-avatar-offset-x))) translateY(calc(var(--home-avatar-offset-y)));
-  width:var(--home-avatar-w); max-width:var(--home-avatar-max); min-width:var(--home-avatar-min); aspect-ratio:1/1; background:var(--bg);
-  z-index:-1; filter:none; opacity:1;
+  border:none;box-shadow:none;background:transparent;display:block
 }
 
 /* Post page */
 .post h1{margin:0 0 8px;font-size:1.9rem;line-height:1.2}
 /* Reduce post page title size for better balance */
 .post h1{font-size:1.4rem}
+.post img{width:min(30vw, 100%); aspect-ratio:1/1; height:auto; object-fit:cover; display:block}
 .post .meta{margin-bottom:14px}
 
 /* Small screens */
