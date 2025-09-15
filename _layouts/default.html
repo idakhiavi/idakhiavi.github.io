@@ -57,6 +57,27 @@
             <li><em>No posts yet</em></li>
           {% endif %}
         </ul>
+
+        <h3 style="margin-top:14px">Tags</h3>
+        <ul>
+          {% assign tags_raw = '' %}
+          {% for post in site.posts %}
+            {% assign text = post.content | strip_html | replace: ',', ' ' | replace: '.', ' ' | replace: '!', ' ' | replace: '?', ' ' | replace: ';', ' ' | replace: ':', ' ' | replace: ')', ' ' | replace: '(', ' ' %}
+            {% assign words = text | split: ' ' %}
+            {% for w in words %}
+              {% if w and w != '' and w | slice: 0, 1 == '#' %}
+                {% assign tag = w | remove: '#' | downcase %}
+                {% capture tags_raw %}{{ tags_raw }}|{{ tag }}{% endcapture %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+          {% assign tag_list = tags_raw | split: '|' | uniq | sort %}
+          {% for tag in tag_list %}
+            {% if tag != '' %}
+              <li><a href="{{ '/tags/#' | append: tag | relative_url }}">#{{ tag }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     </aside>
   </div>
