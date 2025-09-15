@@ -146,10 +146,16 @@ a:hover{text-decoration:underline}
 
 /* Homepage left-margin avatar (no overlap) */
 .home-with-avatar{position:relative;padding-left:var(--home-avatar-pad)}
-.home-with-avatar .home-left-image{position:fixed;left:var(--home-avatar-offset-x);bottom:var(--home-avatar-offset-y);pointer-events:none}
+.home-with-avatar .home-left-image{position:fixed;left:var(--home-avatar-offset-x);bottom:var(--home-avatar-offset-y);pointer-events:none;z-index:20}
 .home-with-avatar .home-left-image img{
   width:var(--home-avatar-w);max-width:var(--home-avatar-max);min-width:var(--home-avatar-min);height:auto;border-radius:0;object-fit:contain;
   border:none;box-shadow:none;display:block
+}
+/* Mask the container grid/border behind transparent areas of the avatar */
+.home-with-avatar .home-left-image::before{
+  content:""; position:fixed; left:0; bottom:0; transform:translateX(calc(var(--home-avatar-offset-x))) translateY(calc(var(--home-avatar-offset-y)));
+  width:var(--home-avatar-w); max-width:var(--home-avatar-max); min-width:var(--home-avatar-min); aspect-ratio:1/1; background:var(--bg);
+  z-index:-1; filter:none; opacity:1;
 }
 
 /* Post page */
