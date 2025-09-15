@@ -24,24 +24,49 @@ permalink: /tags/
 {% for tag in tag_list %}
   {% if tag != '' %}
     {% assign sigil = '#' | append: tag %}
-    <h2 id="{{ tag }}">#{{ tag }}</h2>
-    <ul>
-      {% for p in site.posts %}
-        {% assign found = '' %}
-        {% assign segs = p.content | strip_html | split: '#' %}
-        {% for z in segs offset:1 %}
-          {% if z and z != '' and z | slice: 0, 1 != ' ' %}
-            {% assign tok = z | strip | split: ' ' | first %}
-            {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
-            {% if tok == tag %}
-              {% assign found = '1' %}
+    <section class="tag-section" id="{{ tag }}">
+      <h2>#{{ tag }}</h2>
+      <ul>
+        {% for p in site.posts %}
+          {% assign found = '' %}
+          {% assign segs = p.content | strip_html | split: '#' %}
+          {% for z in segs offset:1 %}
+            {% if z and z != '' and z | slice: 0, 1 != ' ' %}
+              {% assign tok = z | strip | split: ' ' | first %}
+              {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
+              {% if tok == tag %}
+                {% assign found = '1' %}
+              {% endif %}
             {% endif %}
+          {% endfor %}
+          {% if found != '' %}
+            <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
           {% endif %}
         {% endfor %}
-        {% if found != '' %}
-          <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">({{ p.date | date: "%b %-d, %Y" }})</span></li>
-        {% endif %}
-      {% endfor %}
-    </ul>
+      </ul>
+    </section>
   {% endif %}
 {% endfor %}
+
+<script>
+  (function(){
+    function applyTagFilter(){
+      var hash = decodeURIComponent(location.hash||'').replace('#','');
+      var sections = document.querySelectorAll('.tag-section');
+      if(!hash){
+        sections.forEach(function(s){ s.classList.remove('is-active'); });
+        document.documentElement.classList.remove('tag-filter-active');
+        return;
+      }
+      var any = false;
+      sections.forEach(function(s){
+        if(s.id === hash){ s.classList.add('is-active'); any = true; }
+        else { s.classList.remove('is-active'); }
+      });
+      if(any){ document.documentElement.classList.add('tag-filter-active'); }
+      else { document.documentElement.classList.remove('tag-filter-active'); }
+    }
+    window.addEventListener('hashchange', applyTagFilter);
+    document.addEventListener('DOMContentLoaded', applyTagFilter);
+  })();
+  </script>

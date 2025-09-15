@@ -196,3 +196,8 @@ a:hover{text-decoration:underline}
 .arcade .post-item:hover{background:rgba(176,38,255,.06)}
 .arcade .post-title:hover{ text-shadow:0 0 6px rgba(57,255,20,.85) }
 .arcade .sidebar .card{ border-color:rgba(176,38,255,.25); box-shadow:0 0 0 1px rgba(176,38,255,.15) inset }
+
+/* Tags page filtering */
+.tag-section{ margin:16px 0 24px }
+html.tag-filter-active .tag-section{ display:none }
+html.tag-filter-active .tag-section.is-active{ display:block }
