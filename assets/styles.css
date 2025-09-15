@@ -42,7 +42,7 @@ a:hover{text-decoration:underline}
 .social a{margin-right:10px}
 
 /* Layout */
-.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px}
+.container{max-width:var(--maxw);margin:0 auto;padding:24px 16px 48px;position:relative}
 .grid{display:grid;grid-template-columns:3fr 1fr;gap:28px}
 .main h1{margin:0 0 12px}
 
@@ -72,6 +72,25 @@ a:hover{text-decoration:underline}
   background:linear-gradient(0deg,#12141b,#0f1115);
 }
 
+/* Homepage left-margin avatar */
+.home-left-image{
+  position:absolute;
+  left:0;
+  top:140px; /* sits just below the header */
+  transform:translateX(-60%);
+  z-index:0;
+  pointer-events:none; /* purely decorative */
+}
+.home-left-image img{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  display:block;
+}
+
 /* Post page */
 .post h1{margin:0 0 8px;font-size:1.9rem;line-height:1.2}
 .post .meta{margin-bottom:14px}
@@ -79,4 +98,5 @@ a:hover{text-decoration:underline}
 /* Small screens */
 @media (max-width:800px){
   .grid{grid-template-columns:1fr}
+  .home-left-image{display:none}
 }
