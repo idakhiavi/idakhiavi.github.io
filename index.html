@@ -12,14 +12,13 @@ title: Home
 
   <h1>Posts</h1>
 
-  <ul class="post-list">
   {% for post in site.posts %}
-  <li class="post-item">
-    <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="meta">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
-    </span>
-  </li>
+    <article class="post home-post">
+      <h2><a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time></p>
+      <div class="post-content">
+        {{ post.content }}
+      </div>
+    </article>
   {% endfor %}
-  </ul>
 </div>

@@ -112,10 +112,17 @@ a:hover{text-decoration:underline}
 .main h1{margin:0 0 12px}
 
 /* Post list (home) */
+/* legacy list styles no longer used on home */
 .post-list{list-style:none;margin:0;padding:0}
-.post-item{padding:14px 0;border-bottom:1px solid var(--border)}
+.post-item{padding:0;border:0}
 .post-title{font-weight:700; font-size:.95rem; overflow-wrap:anywhere}
-.meta{color:var(--muted);font-size:.95rem;margin-left:8px}
+.meta{color:var(--muted);font-size:.9rem;margin:0}
+
+/* Full posts on home */
+.home-post{padding:16px 0;border-bottom:1px solid var(--border)}
+.home-post h2{margin:0 0 6px}
+.home-post .post-content img{max-width:100%;height:auto}
+.home-post .post-content{margin-top:8px}
 
 /* Sidebar */
 .sidebar .card{

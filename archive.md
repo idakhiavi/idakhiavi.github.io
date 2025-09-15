@@ -6,7 +6,7 @@ permalink: /archive/
 
 # Archive
 
-{% assign posts_by_month = site.posts | group_by_exp: 'post', post.date | date: '%Y-%m' | sort: 'name' | reverse %}
+{% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" | sort: 'name' | reverse %}
 
 {% for month in posts_by_month %}
   {% assign ym = month.name %}
@@ -21,4 +21,3 @@ permalink: /archive/
     {% endfor %}
   </ul>
 {% endfor %}
-
