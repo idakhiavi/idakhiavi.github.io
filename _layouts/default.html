@@ -59,24 +59,59 @@
         </ul>
 
         <h3 style="margin-top:14px">Tags</h3>
-        <ul>
-          {% assign tags_raw = '' %}
-          {% for post in site.posts %}
-            {% assign segments = post.content | strip_html | split: '#' %}
-            {% for s in segments offset:1 %}
-              {% if s and s != '' and s | slice: 0, 1 != ' ' %}
-                {% assign token = s | strip | split: ' ' | first %}
-                {% assign token = token | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
-                {% if token != '' %}
-                  {% capture tags_raw %}{{ tags_raw }}|{{ token }}{% endcapture %}
-                {% endif %}
+        {% assign tags_raw = '' %}
+        {% for post in site.posts %}
+          {% assign segments = post.content | strip_html | split: '#' %}
+          {% for s in segments offset:1 %}
+            {% if s and s != '' and s | slice: 0, 1 != ' ' %}
+              {% assign token = s | strip | split: ' ' | first %}
+              {% assign token = token | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: "'", '' %}
+              {% if token != '' %}
+                {% capture tags_raw %}{{ tags_raw }}|{{ token }}{% endcapture %}
               {% endif %}
-            {% endfor %}
+            {% endif %}
           {% endfor %}
-          {% assign tag_list = tags_raw | split: '|' | uniq | sort %}
+        {% endfor %}
+        {% assign tags_all = tags_raw | split: '|' %}
+        {% assign tag_list = tags_all | uniq | sort %}
+        <ul class="tag-cloud">
           {% for tag in tag_list %}
             {% if tag != '' %}
-              <li><a href="{{ '/tags/#' | append: tag | relative_url }}">#{{ tag }}</a></li>
+              {% assign tag_count = 0 %}
+              {% for p in site.posts %}
+                {% assign found = '' %}
+                {% assign segs = p.content | strip_html | split: '#' %}
+                {% for z in segs offset:1 %}
+                  {% if z and z != '' and z | slice: 0, 1 != ' ' %}
+                    {% assign tok = z | strip | split: ' ' | first %}
+                    {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: "'", '' %}
+                    {% if tok == tag %}
+                      {% assign found = '1' %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% if found != '' %}
+                  {% assign tag_count = tag_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% assign size_class = 'tag-size-1' %}
+              {% if tag_count > 3 %}
+                {% assign size_class = 'tag-size-3' %}
+              {% elsif tag_count > 1 %}
+                {% assign size_class = 'tag-size-2' %}
+              {% endif %}
+              {% assign color_index = tag | size | modulo: 4 %}
+              {% case color_index %}
+                {% when 0 %}
+                  {% assign color_class = 'tag-color-purple' %}
+                {% when 1 %}
+                  {% assign color_class = 'tag-color-yellow' %}
+                {% when 2 %}
+                  {% assign color_class = 'tag-color-blue' %}
+                {% else %}
+                  {% assign color_class = 'tag-color-red' %}
+              {% endcase %}
+              <li><a class="tag-chip {{ size_class }} {{ color_class }}" href="{{ '/tags/#' | append: tag | relative_url }}">#{{ tag }}</a></li>
             {% endif %}
           {% endfor %}
         </ul>
