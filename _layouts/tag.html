@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<article class="post">
+  <h1>Posts tagged {{ page.title }}</h1>
+  <ul>
+    {% assign target = page.tag %}
+    {% for p in site.posts %}
+      {% assign found = '' %}
+      {% assign segs = p.content | strip_html | split: '#' %}
+      {% for z in segs offset:1 %}
+        {% if z and z != '' and z | slice: 0, 1 != ' ' %}
+          {% assign tok = z | strip | split: ' ' | first %}
+          {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
+          {% if tok == target %}
+            {% assign found = '1' %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if found != '' %}
+        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">{{ p.date | date: "%b %-d, %Y" }}</span></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</article>
+
