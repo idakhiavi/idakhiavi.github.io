@@ -100,7 +100,7 @@
               {% elsif tag_count > 1 %}
                 {% assign size_class = 'tag-size-2' %}
               {% endif %}
-              {% assign color_index = tag | size | modulo: 4 %}
+              {% assign color_index = forloop.index0 | modulo: 4 %}
               {% case color_index %}
                 {% when 0 %}
                   {% assign color_class = 'tag-color-purple' %}
