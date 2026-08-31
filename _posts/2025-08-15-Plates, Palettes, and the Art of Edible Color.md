@@ -3,7 +3,7 @@ title: "Plates, Palettes, and the Art of Edible Color"
 description: "A charcuterie board as a fleeting study in color, tension, texture, and mood."
 tags:
   - art
-  - culinary art
+  - culinaryart
   - color
   - Egon Schiele
   - Edvard Munch
