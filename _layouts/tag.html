@@ -1,26 +1,24 @@
 ---
 layout: default
 ---
-<article class="post">
-  <h1>Posts tagged {{ page.title }}</h1>
-  <ul>
-    {% assign target = page.tag %}
-    {% for p in site.posts %}
-      {% assign found = '' %}
-      {% assign segs = p.content | strip_html | split: '#' %}
-      {% for z in segs offset:1 %}
-        {% if z and z != '' and z | slice: 0, 1 != ' ' %}
-          {% assign tok = z | strip | split: ' ' | first %}
-          {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: '“', '' | replace: '”', '' | replace: "'", '' | replace: '’', '' | replace: '‘', '' %}
-          {% if tok == target %}
-            {% assign found = '1' %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-      {% if found != '' %}
-        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> <span class="meta">{{ p.date | date: "%b %-d, %Y" }}</span></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</article>
+<section class="page-intro">
+  <p class="eyebrow">TAG STATION <span lang="ja">トピック</span></p>
+  <h1>{{ page.title }}</h1>
+  <p>Posts tuned to this frequency.</p>
+</section>
 
+{% assign tagged_posts = site.tags[page.tag] %}
+{% if tagged_posts and tagged_posts.size > 0 %}
+<ol class="archive-list legacy-tag-list">
+  {% for post in tagged_posts %}
+  <li>
+    <span class="archive-index" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %d' }}</time>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="archive-play" aria-hidden="true">▶</span>
+  </li>
+  {% endfor %}
+</ol>
+{% else %}
+<div class="empty-screen"><span aria-hidden="true">#</span><p>No tracks on this frequency yet. <a href="{{ '/tags/' | relative_url }}">Browse all tags.</a></p></div>
+{% endif %}
