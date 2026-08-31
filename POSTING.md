@@ -1,4 +1,4 @@
-# Posting to Ida's Night Room
+# Posting to Ida's Corner
 
 The blog stays intentionally simple: every post is one Markdown file in `_posts/`. No CMS, JavaScript framework, or local editor is required.
 
@@ -41,7 +41,7 @@ Reusable images live in `assets/images/`. A post can declare one `image` for the
 
 ## Tags
 
-Use the `tags` list in front matter. Do not add a line of `#hashtags` to article prose just to create navigation; Jekyll builds the tag index automatically.
+Use the `tags` list in front matter. Do not add a line of `#hashtags` to article prose just to create navigation; Jekyll builds the topic index automatically.
 
 ## Publishing safety
 
