@@ -1,43 +1,139 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {% assign meta_description = page.description | default: site.description %}
-  <title>{% if page.title and page.title != "Home" %}{{ page.title }} — {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ meta_description | strip_html | escape }}" />
-  <meta name="theme-color" content="#090713" />
-  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta property="og:description" content="{{ meta_description | strip_html | escape }}" />
-  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
-  <meta property="og:url" content="{{ page.url | absolute_url }}" />
-  {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}" />{% endif %}
-  <link rel="stylesheet" href="{{ '/assets/styles.css?v=8' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/refinement.css?v=1' | relative_url }}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+<link rel="stylesheet" href="{{ "/assets/styles.css?v=4" | relative_url }}">
+<!-- Arcade font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Body font to match arcade vibe but readable -->
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="{{ site.description }}">
 </head>
-<body class="site-shell layout-{{ page.layout | default: 'page' }}">
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  {% include site-header.html %}
-  <main id="main-content" class="page-frame">
-    <div class="content-grid">
-      <section class="content-panel">{{ content }}</section>
-      {% include sidebar.html %}
+<body class="arcade">
+<header class="site-header">
+  <div class="inner">
+    <div class="brand-and-nav">
+      <a class="brand" href="{{ "/" | relative_url }}">Ida Khiavi</a>
+      <nav class="tabs">
+        <!-- labels lower-case, no leading slash; href goes to full URL paths -->
+        <a href="{{ site.url }}/contact">contact</a>
+        <a href="{{ site.url }}/resume">resume</a>
+        <a href="{{ site.url }}/aboutme">aboutme</a>
+        <span class="sep">|</span>
+        <a href="{{ "/" | relative_url }}">home</a>
+        <a href="{{ "/archive/" | relative_url }}">archive</a>
+      </nav>
     </div>
-  </main>
-  {% include site-footer.html %}
-  <script>
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RJG5BJB5E"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-3RJG5BJB5E');
-  </script>
+    <p class="tagline">{{ site.description }}</p>
+    <p class="social">
+      <a href="https://github.com/idakhiavi">GitHub</a>
+      <a href="https://www.linkedin.com/in/idakhiavi">LinkedIn</a>
+      <a href="XXX">Publication</a>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="grid">
+    <section class="main">
+      {{ content }}
+    </section>
+    <aside class="sidebar" aria-label="Archive">
+      <div class="card">
+        <h3>Archive</h3>
+        <ul>
+          {% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" | sort: 'name' | reverse %}
+          {% if posts_by_month and posts_by_month.size > 0 %}
+            {% for month in posts_by_month %}
+              {% assign anchor = month.name %}
+              {% assign label = month.items[0].date | date: '%B %Y' %}
+              <li><a href="{{ '/archive/#' | append: anchor | relative_url }}">{{ label }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><em>No posts yet</em></li>
+          {% endif %}
+        </ul>
+
+        <h3 style="margin-top:14px">Tags</h3>
+        {% assign tags_raw = '' %}
+        {% for post in site.posts %}
+          {% assign segments = post.content | strip_html | split: '#' %}
+          {% for s in segments offset:1 %}
+            {% if s and s != '' and s | slice: 0, 1 != ' ' %}
+              {% assign token = s | strip | split: ' ' | first %}
+              {% assign token = token | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: "'", '' %}
+              {% if token != '' %}
+                {% capture tags_raw %}{{ tags_raw }}|{{ token }}{% endcapture %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+        {% assign tags_all = tags_raw | split: '|' %}
+        {% assign tag_list = tags_all | uniq | sort %}
+        <ul class="tag-cloud">
+          {% for tag in tag_list %}
+            {% if tag != '' %}
+              {% assign tag_count = 0 %}
+              {% for p in site.posts %}
+                {% assign found = '' %}
+                {% assign segs = p.content | strip_html | split: '#' %}
+                {% for z in segs offset:1 %}
+                  {% if z and z != '' and z | slice: 0, 1 != ' ' %}
+                    {% assign tok = z | strip | split: ' ' | first %}
+                    {% assign tok = tok | replace: ',', '' | replace: '.', '' | replace: '!', '' | replace: '?', '' | replace: ';', '' | replace: ':', '' | replace: ')', '' | replace: '(', '' | replace: ']', '' | replace: '[', '' | replace: '"', '' | replace: "'", '' %}
+                    {% if tok == tag %}
+                      {% assign found = '1' %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% if found != '' %}
+                  {% assign tag_count = tag_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              {% assign size_class = 'tag-size-1' %}
+              {% if tag_count > 3 %}
+                {% assign size_class = 'tag-size-3' %}
+              {% elsif tag_count > 1 %}
+                {% assign size_class = 'tag-size-2' %}
+              {% endif %}
+              {% assign color_index = forloop.index0 | modulo: 4 %}
+              {% case color_index %}
+                {% when 0 %}
+                  {% assign color_class = 'tag-color-purple' %}
+                {% when 1 %}
+                  {% assign color_class = 'tag-color-yellow' %}
+                {% when 2 %}
+                  {% assign color_class = 'tag-color-blue' %}
+                {% else %}
+                  {% assign color_class = 'tag-color-red' %}
+              {% endcase %}
+              <li><a class="tag-chip {{ size_class }} {{ color_class }}" href="{{ '/tags/#' | append: tag | relative_url }}">#{{ tag }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  © <span id="y"></span> Ida Khiavi • <span style="color:var(--accent2)">Ida's place</span>
+</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3RJG5BJB5E"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-3RJG5BJB5E');
+</script>
+
 </body>
 </html>

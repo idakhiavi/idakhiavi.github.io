@@ -1,23 +1,12 @@
-title: "Ida's Corner"
-description: "Essays and notes on software, systems, literature, philosophy, art, and the occasional beautiful tangent."
+title: "Ida's place"
+description: "B.Eng. , M.Sc. in computer Science"
 url: "https://idakhiavi.com"
 baseurl: ""
 theme: null
 permalink: /:title/
 markdown: kramdown
-timezone: Europe/Oslo
-
-author:
-  name: "Ida Khiavi"
-  github: "idakhiavi"
-  linkedin: "idakhiavi"
-
 kramdown:
   input: GFM
-
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: post
+collections:
+  posts:
+    output: true

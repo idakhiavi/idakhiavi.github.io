@@ -1,42 +1,24 @@
 ---
 layout: default
 title: Home
-description: "Ida's personal notebook for software, systems, literature, philosophy, art, and the connections between them."
 ---
 
-<section class="home-hero">
-  <div class="hero-copy">
-    <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> NOTES / ESSAYS / MARGINALIA</p>
-    <h1><span class="hero-line hero-line-small">WELCOME TO</span><span class="hero-line hero-line-main">IDA'S CORNER</span></h1>
-    <p class="hero-lede">A personal notebook for software and systems, books and ideas, philosophy, art, and the useful collisions between them.</p>
-    <div class="hero-actions"><a class="pixel-button pixel-button-primary" href="#writing"><span aria-hidden="true">→</span> recent writing</a><a class="pixel-button" href="{{ '/aboutme/' | relative_url }}"><span aria-hidden="true">✦</span> about me</a></div>
+<div class="home-with-avatar home-arcade">
+  <!-- Left margin avatar for homepage -->
+  <div class="home-left-image" aria-hidden="true">
+    <img src="{{ "/assets/images/ida.png" | relative_url }}" alt="" />
+    <!-- Decorative only; alt left empty on purpose -->
   </div>
-  <div class="hero-marquee" aria-hidden="true"><div class="marquee-screen"><span class="marquee-kicker">CURRENT INTERESTS</span><strong>SYSTEMS<br />LITERATURE<br />PHILOSOPHY<br />ART</strong><span class="marquee-stars">§ &nbsp; { } &nbsp; ∴ &nbsp; ✦</span></div></div>
-</section>
 
-<section id="writing" class="playlist-section">
-  <header class="section-heading"><div><p class="eyebrow">RECENT WRITING</p><h2>Latest notes &amp; essays</h2></div><span class="track-count">{{ site.posts | size }} POSTS</span></header>
+  <h1>Posts</h1>
 
-  {% if site.posts.size > 0 %}
-  <ol class="track-list">
-    {% for post in site.posts %}
-      {% assign tone = forloop.index0 | modulo: 4 %}
-      <li class="track-card tone-{{ tone }}">
-        <div class="track-number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div>
-        {% if post.image %}
-          <a class="track-art" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}"><img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: '' | escape }}" loading="lazy" /><span class="track-art-overlay" aria-hidden="true">→</span></a>
-        {% else %}
-          <a class="track-art track-art-placeholder" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}"><span class="pixel-note" aria-hidden="true">§</span></a>
-        {% endif %}
-        <div class="track-copy">
-          <div class="track-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' }}</time><span>•</span><span>ESSAY / NOTE</span></div>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p class="track-excerpt">{% if post.description %}{{ post.description }}{% else %}{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% endif %}</p>
-          {% if post.tags and post.tags.size > 0 %}<div class="track-tags" aria-label="Tags">{% for tag in post.tags limit: 4 %}{% assign tag_slug = tag | slugify %}<a href="{{ '/tags/#' | append: tag_slug | relative_url }}">#{{ tag }}</a>{% endfor %}</div>{% endif %}
-          <a class="track-play" href="{{ post.url | relative_url }}">READ ARTICLE <span aria-hidden="true">→</span></a>
-        </div>
-      </li>
-    {% endfor %}
-  </ol>
-  {% else %}<div class="empty-screen"><span aria-hidden="true">§</span><p>No writing here yet.</p></div>{% endif %}
-</section>
+  {% for post in site.posts %}
+    <article class="post home-post">
+      <h2><a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time></p>
+      <div class="post-content">
+        {{ post.content }}
+      </div>
+    </article>
+  {% endfor %}
+</div>
