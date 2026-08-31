@@ -1,6 +1,10 @@
 ---
-layout: post
 title: "Rage Against the Dying of the Light: An Engineer’s Reflection"
+description: "A reflection on entropy, maintenance, and why engineers keep the light burning."
+tags:
+  - engineering
+  - literature
+  - reflection
 ---
 
 There’s something deeply technical in Dylan Thomas’s refrain: “Rage, rage against the dying of the light.”

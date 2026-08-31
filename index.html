@@ -1,24 +1,42 @@
 ---
 layout: default
 title: Home
+description: "Ida's late-night notebook: technology, art, philosophy, experiments, and whatever refuses to leave her head."
 ---
 
-<div class="home-with-avatar home-arcade">
-  <!-- Left margin avatar for homepage -->
-  <div class="home-left-image" aria-hidden="true">
-    <img src="{{ "/assets/images/ida.png" | relative_url }}" alt="" />
-    <!-- Decorative only; alt left empty on purpose -->
+<section class="home-hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="signal-dot" aria-hidden="true"></span> SIGNAL ONLINE <span class="eyebrow-jp" lang="ja">ネオン通信中</span></p>
+    <h1><span class="hero-line hero-line-small">WELCOME TO</span><span class="hero-line hero-line-main">IDA'S NIGHT ROOM</span></h1>
+    <p class="hero-lede">A late-night playlist of technical ideas, art, philosophy, cities, food, and whatever else keeps the light on.</p>
+    <div class="hero-actions"><a class="pixel-button pixel-button-primary" href="#playlist"><span aria-hidden="true">▶</span> start reading</a><a class="pixel-button" href="{{ '/aboutme/' | relative_url }}"><span aria-hidden="true">★</span> player profile</a></div>
   </div>
+  <div class="hero-marquee" aria-hidden="true"><div class="marquee-screen"><span class="marquee-kicker">TONIGHT'S MODE</span><strong>KARAOKE<br />&amp; CURIOSITY</strong><span class="marquee-jp" lang="ja">夜更かし歓迎</span><span class="marquee-stars">✦ ♪ ★ ♡ ♪ ✦</span></div></div>
+</section>
 
-  <h1>Posts</h1>
+<section id="playlist" class="playlist-section">
+  <header class="section-heading"><div><p class="eyebrow">SELECT A TRACK</p><h2>Tonight's playlist <span lang="ja">今夜のプレイリスト</span></h2></div><span class="track-count">{{ site.posts | size }} ENTRIES</span></header>
 
-  {% for post in site.posts %}
-    <article class="post home-post">
-      <h2><a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-      <p class="meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time></p>
-      <div class="post-content">
-        {{ post.content }}
-      </div>
-    </article>
-  {% endfor %}
-</div>
+  {% if site.posts.size > 0 %}
+  <ol class="track-list">
+    {% for post in site.posts %}
+      {% assign tone = forloop.index0 | modulo: 4 %}
+      <li class="track-card tone-{{ tone }}">
+        <div class="track-number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div>
+        {% if post.image %}
+          <a class="track-art" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}"><img src="{{ post.image | relative_url }}" alt="{{ post.image_alt | default: '' | escape }}" loading="lazy" /><span class="track-art-overlay" aria-hidden="true">▶</span></a>
+        {% else %}
+          <a class="track-art track-art-placeholder" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}"><span class="pixel-note" aria-hidden="true">♪</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
+        {% endif %}
+        <div class="track-copy">
+          <div class="track-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %-d, %Y' }}</time><span>•</span><span>READ MODE</span></div>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p class="track-excerpt">{% if post.description %}{{ post.description }}{% else %}{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% endif %}</p>
+          {% if post.tags and post.tags.size > 0 %}<div class="track-tags" aria-label="Tags">{% for tag in post.tags limit: 4 %}{% assign tag_slug = tag | slugify %}<a href="{{ '/tags/#' | append: tag_slug | relative_url }}">#{{ tag }}</a>{% endfor %}</div>{% endif %}
+          <a class="track-play" href="{{ post.url | relative_url }}">PLAY / READ <span aria-hidden="true">▶</span></a>
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+  {% else %}<div class="empty-screen"><span aria-hidden="true">♪</span><p>No tracks queued yet.</p></div>{% endif %}
+</section>

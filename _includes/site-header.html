@@ -1,0 +1,19 @@
+<header class="site-header">
+  <div class="header-shell">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Ida's Night Room — home">
+      <span class="brand-kicker"><span class="signal-dot" aria-hidden="true"></span> 24H NEON NOTES</span>
+      <span class="brand-title">IDA'S NIGHT ROOM</span>
+      <span class="brand-jp" lang="ja">夜のノート ・ ネオンの思考</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="nav-link{% if page.url == '/' %} is-active{% endif %}" href="{{ '/' | relative_url }}"><span class="nav-glyph" aria-hidden="true">▶</span><span>home</span><small lang="ja">ホーム</small></a>
+      <a class="nav-link{% if page.url contains '/archive' %} is-active{% endif %}" href="{{ '/archive/' | relative_url }}"><span class="nav-glyph" aria-hidden="true">♫</span><span>archive</span><small lang="ja">アーカイブ</small></a>
+      <a class="nav-link{% if page.url contains '/aboutme' %} is-active{% endif %}" href="{{ '/aboutme/' | relative_url }}"><span class="nav-glyph" aria-hidden="true">★</span><span>about</span><small lang="ja">プロフィール</small></a>
+      <a class="nav-link{% if page.url contains '/resume' %} is-active{% endif %}" href="{{ '/resume/' | relative_url }}"><span class="nav-glyph" aria-hidden="true">◆</span><span>resume</span><small lang="ja">履歴</small></a>
+      <a class="nav-link{% if page.url contains '/contact' %} is-active{% endif %}" href="{{ '/contact/' | relative_url }}"><span class="nav-glyph" aria-hidden="true">✦</span><span>contact</span><small lang="ja">連絡</small></a>
+    </nav>
+
+    <div class="signal-strip" aria-hidden="true"><span>CH 08</span><span class="signal-bars"><i></i><i></i><i></i><i></i></span><span>STEREO</span><span>● REC</span></div>
+  </div>
+</header>

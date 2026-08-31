@@ -1,0 +1,28 @@
+<aside class="sidebar" aria-label="About and browse">
+  <section class="side-card profile-card">
+    <div class="side-card-label"><span>NOW BROADCASTING</span><span class="live-pill">LIVE</span></div>
+    <div class="profile-stage" aria-hidden="true"><span class="profile-star star-a">✦</span><span class="profile-star star-b">★</span><img src="{{ '/assets/images/ida.png' | relative_url }}" alt="" loading="lazy" /></div>
+    <h2>IDA KHIAVI</h2>
+    <p class="profile-copy">Engineer by degree. Explorer by nature. Writing about systems, art, philosophy, cities, and the odd beautiful tangent.</p>
+    <div class="mini-stats"><span><strong>{{ site.posts | size }}</strong> tracks</span><span><strong>∞</strong> side quests</span></div>
+    <div class="side-actions"><a href="{{ '/aboutme/' | relative_url }}">★ player profile</a><a href="{{ '/archive/' | relative_url }}">♫ full catalogue</a></div>
+  </section>
+
+  <section class="side-card tag-station">
+    <div class="side-card-label"><span>TAG STATION</span><a href="{{ '/tags/' | relative_url }}">view all</a></div>
+    {% assign sorted_tags = site.tags | sort %}
+    {% if sorted_tags and sorted_tags.size > 0 %}
+      <div class="tag-cloud">
+        {% for tag in sorted_tags limit: 12 %}
+          {% assign tag_slug = tag[0] | slugify %}
+          <a class="tag-chip" href="{{ '/tags/#' | append: tag_slug | relative_url }}">#{{ tag[0] }} <span>{{ tag[1].size }}</span></a>
+        {% endfor %}
+      </div>
+    {% else %}<p class="empty-state">No tags on air yet.</p>{% endif %}
+  </section>
+
+  <section class="side-card link-station">
+    <div class="side-card-label"><span>FIND ME</span></div>
+    <div class="external-links"><a href="https://github.com/idakhiavi" rel="me">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/idakhiavi" rel="me">LinkedIn <span aria-hidden="true">↗</span></a></div>
+  </section>
+</aside>

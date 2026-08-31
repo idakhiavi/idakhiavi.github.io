@@ -1,12 +1,23 @@
-title: "Ida's place"
-description: "B.Eng. , M.Sc. in computer Science"
+title: "Ida's Night Room"
+description: "Notes on technology, art, philosophy, and whatever keeps the light on."
 url: "https://idakhiavi.com"
 baseurl: ""
 theme: null
 permalink: /:title/
 markdown: kramdown
+timezone: Europe/Oslo
+
+author:
+  name: "Ida Khiavi"
+  github: "idakhiavi"
+  linkedin: "idakhiavi"
+
 kramdown:
   input: GFM
-collections:
-  posts:
-    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post

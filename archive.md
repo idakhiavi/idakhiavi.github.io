@@ -1,23 +1,18 @@
 ---
 layout: default
 title: Archive
+description: "The back catalogue: every post in Ida's Night Room."
 permalink: /archive/
 ---
 
-# Archive
+<section class="page-intro"><p class="eyebrow">BACK CATALOGUE <span lang="ja">曲リスト</span></p><h1>Archive</h1><p>Everything that has been on air, newest first.</p></section>
 
-{% assign posts_by_month = site.posts | group_by_exp: "post", "post.date | date: '%Y-%m'" | sort: 'name' | reverse %}
-
-{% for month in posts_by_month %}
-  {% assign ym = month.name %}
-  {% assign label = month.items[0].date | date: '%B %Y' %}
-  <h2 id="{{ ym }}">{{ label }}</h2>
-  <ul>
-    {% for post in month.items %}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      </li>
-    {% endfor %}
-  </ul>
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+<div class="archive-catalogue">
+{% for year in posts_by_year %}
+  <section class="archive-year">
+    <div class="archive-year-label"><span>{{ year.name }}</span><small>{{ year.items.size }} TRACKS</small></div>
+    <ol class="archive-list">{% for post in year.items %}<li><span class="archive-index" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %d' }}</time><a href="{{ post.url | relative_url }}">{{ post.title }}</a><span class="archive-play" aria-hidden="true">▶</span></li>{% endfor %}</ol>
+  </section>
 {% endfor %}
+</div>
