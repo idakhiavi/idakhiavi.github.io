@@ -4,6 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+{% assign seo_description = page.description | default: site.seo_description | default: site.description %}
+<meta name="description" content="{{ seo_description | escape }}">
+<meta name="author" content="{{ site.author }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}">
+<meta property="og:description" content="{{ seo_description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
 <link rel="stylesheet" href="{{ "/assets/styles.css?v=4" | relative_url }}">
 <!-- Arcade font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +20,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <!-- Body font to match arcade vibe but readable -->
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700&display=swap" rel="stylesheet">
-<meta name="description" content="{{ site.description }}">
+{% if page.url == '/aboutme/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/aboutme/#ida-khiavi",
+    "name": "Ida Khiavi",
+    "url": "{{ site.url }}/aboutme/",
+    "image": "{{ site.url }}/assets/images/ida.png",
+    "jobTitle": "Software Engineer",
+    "description": "Software Engineer at Cisco in Lysaker, Norway, with experience in backend systems, embedded software, developer tooling, data engineering, and bioinformatics.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Cisco",
+      "url": "https://www.cisco.com/"
+    },
+    "sameAs": [
+      "https://github.com/idakhiavi",
+      "https://www.linkedin.com/in/idakhiavi"
+    ]
+  }
+}
+</script>
+{% endif %}
 </head>
 <body class="arcade">
 <header class="site-header">

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: resume
+description: "Ida Khiavi's software engineering experience, including current work at Cisco in Lysaker, Norway, and previous roles in Norway and Canada."
 permalink: /resume/
 ---
 
